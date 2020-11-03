@@ -13,7 +13,8 @@
             Browsermu tidak mendukung bro, upgrade donk!
         </video>
         <div id="res"></div>
-        <button onclick="takeSnapshot()">Ambil Gambar</button>
+        <button onclick="takeSnapshot()">Ambil Gambar</button><br>
+        <button onclick="simpan()">Simpan</button>
     </div>
     
 
@@ -40,7 +41,7 @@
         // fungsi ini akan dieksekusi kalau user menolak izin
         function videoError(e) {
             // do something
-            alert("Izinkan menggunakan webcam untuk demo!")
+            alert("Izinkan menggunakan webcam untuk ambil gambar tamu")
         }
 
 
@@ -71,7 +72,15 @@
         }
 
         function simpan(){
-            var image = $('#snapshot').attr('src')
+            var data = $('#snapshot').attr('src');
+
+            $.ajax({
+                    url: "http://localhost/appcam/insertimage.php",
+                    type: "post",
+                    data: {
+                        image: data
+                    },
+                });
         }
     </script>
 </body>
